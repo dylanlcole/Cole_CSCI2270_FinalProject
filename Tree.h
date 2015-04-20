@@ -12,7 +12,7 @@ struct StartNode;
 struct TreeNode{
     //int ranking;
     std::string title;
-    std::vector<std::string> system;
+    std::vector<std::string> systems;
     std::string genre;
     int quantity;
     int rating;
@@ -29,7 +29,7 @@ struct TreeNode{
         genre = in_genre;
         quantity = in_quantity;
         rating = in_rating;
-        system = in_system;
+        systems = in_system;
     }
 
 };
@@ -68,10 +68,12 @@ class Tree
         TreeNode *root;
         std::vector<TreeNode*> XBONElist;
         std::vector<TreeNode*> PS4list;
+        std::vector<TreeNode*> XB360list;
+        std::vector<TreeNode*> PS3list;
         std::vector<TreeNode*> Shooterlist;
         std::vector<TreeNode*> RPGList;
         std::vector<TreeNode*> ActionList;
-        std::vector<TreeNode*> SimList;
+        std::vector<TreeNode*> Fightlist;
 
 };
 
