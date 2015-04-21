@@ -51,6 +51,7 @@ class Tree
         void returnGame(std::string title, std::string system);
         void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
         void recommendGame(int rating, std::string type, std::vector<std::string> system);
+        void sortVectors(TreeNode * node);
        // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
 
 
