@@ -44,27 +44,29 @@ class Tree
         void printGenreInventory(std::string type);
         void printConsolInventory(std::string type);
         int countNodes();
-        void deleteNode(std::string title); //should we have this or just have it say out of stock?
+        void removeGame(std::string title, std::string system); //should we have this or just have it say out of stock?
         void addNode(std::string title, std::string type, int quantity, int rating, std::vector<std::string> systems);
-        void findGame(std::string title);
-        void rentGame(std::string title);
-        void returnGame(std::string title);
-        void tradeGame(std::string title);
+        void findGame(std::string title, std::string system, std::string genre);
+        void rentGame(std::string title, std::string system);
+        void returnGame(std::string title, std::string system);
+        void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
         void recommendGame(int rating, std::string type, std::vector<std::string> system);
        // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
 
 
     protected:
     private:
-        TreeNode* findMin(TreeNode * node);
-        void swapNode(TreeNode *oldnode, TreeNode *newnode);
+        //TreeNode* findMin(TreeNode * node);
+        //void swapNode(TreeNode *oldnode, TreeNode *newnode);
         void DeleteAll(TreeNode * node); //use this for the post-order traversal deletion of the tree
         void printInventory(TreeNode * node);
-        void printGenreInventory(TreeNode * node);
-        void printConsolInventory(TreeNode * node);
+        void printGenreInventory(std::vector<TreeNode*> genreList);
+        void printConsolInventory(std::vector<TreeNode*> consolList);
         int countNodes(TreeNode *node);
         //vector<std::string> recommendGame();
-        TreeNode* searchTree(TreeNode * node, std::string title, std::string system, std::string genre);
+        TreeNode* searchGames(TreeNode * x, std::string title, std::string system, std::string genre);
+        std::vector<TreeNode*> getSystemVector(std::string system);
+        std::vector<TreeNode*> getGenreVector(std::string genre);
         TreeNode *root;
         std::vector<TreeNode*> XBONElist;
         std::vector<TreeNode*> PS4list;
