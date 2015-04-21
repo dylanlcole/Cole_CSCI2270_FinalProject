@@ -184,7 +184,7 @@ void Tree::addNode(string title, string type, int quantity, int rating, vector<s
         else
             y->rightChild = newGame;
     }
-
+/*
     //Sort into system vectors
     for( int i = 0; i < newGame->systems.size(); i++)
     {
@@ -229,6 +229,7 @@ void Tree::addNode(string title, string type, int quantity, int rating, vector<s
     {
         ActionList.push_back(newGame);
     }
+    */
 }
 
 void Tree::printInventory()
@@ -459,4 +460,61 @@ void Tree::recommendGame(int rating, string type, vector<string> system)
 void Tree::DeleteAll(TreeNode* node)
 {
 
+}
+
+void Tree::sortVectors(TreeNode * node)
+{
+    if(node->leftChild != NULL)
+    {
+        printInventory(node->leftChild);
+    }
+        //Sort into system vectors
+    for( int i = 0; i < node->systems.size(); i++)
+    {
+        string currentsystem = node->systems[i];
+
+        if(currentsystem == "PS3")
+        {
+            PS3list.push_back(node);
+        }
+        else if(currentsystem == "XB360")
+        {
+            XB360list.push_back(node);
+        }
+        else if(currentsystem == "XBONE")
+        {
+            XBONElist.push_back(node);
+        }
+        else if(currentsystem == "PS4")
+        {
+            PS4list.push_back(node);
+        }
+
+    }
+
+    //Sort into genre vector
+
+    string currrentgenre = node->genre;
+
+    if(currrentgenre == "rpg")
+    {
+        RPGList.push_back(node);
+    }
+    else if(currrentgenre == "fighting")
+    {
+        Fightlist.push_back(node);
+    }
+    else if(currrentgenre == "shooter")
+    {
+        Shooterlist.push_back(node);
+    }
+    else if(currrentgenre == "action")
+    {
+        ActionList.push_back(node);
+    }
+
+    if(node->rightChild != NULL)
+    {
+        printInventory(node->rightChild);
+    }
 }
