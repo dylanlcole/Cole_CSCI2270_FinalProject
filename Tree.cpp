@@ -462,6 +462,11 @@ void Tree::DeleteAll(TreeNode* node)
 
 }
 
+void Tree::sortVectors()
+{
+    sortVectors(root);
+}
+
 void Tree::sortVectors(TreeNode * node)
 {
     if(node->leftChild != NULL)
@@ -477,15 +482,15 @@ void Tree::sortVectors(TreeNode * node)
         {
             PS3list.push_back(node);
         }
-        else if(currentsystem == "XB360")
+        if(currentsystem == "XB360")
         {
             XB360list.push_back(node);
         }
-        else if(currentsystem == "XBONE")
+        if(currentsystem == "XBONE")
         {
             XBONElist.push_back(node);
         }
-        else if(currentsystem == "PS4")
+        if(currentsystem == "PS4")
         {
             PS4list.push_back(node);
         }
@@ -517,4 +522,17 @@ void Tree::sortVectors(TreeNode * node)
     {
         printInventory(node->rightChild);
     }
+}
+
+int Tree::hashSum(string title)
+{
+    int hashSize = 14;
+    int sum  = 0;
+    for(int i = 0; i < title.length(); i++)
+    {
+        sum = sum + title[i];
+        //cout << sum << endl;
+    }
+    sum = sum % hashSize;
+    return sum;
 }
