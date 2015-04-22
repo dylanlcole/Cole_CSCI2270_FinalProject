@@ -1,0 +1,21 @@
+st of Us,PS3/PS4,action,5,10
+Uncharted 2: Among Theives,PS3,action,10,9
+Mass Effect 2,PS3/XB360,rpg,3,9
+Bioshock,PS3/XB360,action,4,8
+Portal 2,PS3/XB360,action,9,9
+Batman:Arkham Origins,PS3/XB360,action,8,8
+Red Dead Redemption,PS3/XB360,action,3,10
+Grand Theft Auto V,PS3/XB360/PS4/XBONE,action,8,10
+Tomb Raider,PS3/XB360/PS4/XBONE,action,4,8
+The Elder Scrolls V: Skyrim,PS3/XB360,rpg,3,10
+Street Fighter IV,PS3/XB360,fighting,9,7
+Destiny,PS3/XB360/PS4/XBONE,rpg,1,8
+Bloodborne,PS4,rpg,3,9
+Sunset Overdrive,XBONE,action,5,9 
+Titanfall,XBONE,fps,1,9
+Call of Duty: Advanced Warfare,XBONE/PS4,fps,3,7
+Dead Rising 3,XBONE,action,6,8
+Dark Souls II: Scholar of the First Sin,PS4/XBONE,rpg,7,8
+Halo: Master Chief Collection,XBONE,fps,3,9
+Evolve,XBONE,fps,2,8
+Dark Souls,PS3/XB360,rpg,8,8
