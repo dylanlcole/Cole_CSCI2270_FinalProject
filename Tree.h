@@ -12,7 +12,7 @@ struct StartNode;
 struct TreeNode{
     //int ranking;
     std::string title;
-    std::vector<std::string> systems;
+    int systems;
     std::string genre;
     int quantity;
     int rating;
@@ -22,7 +22,7 @@ struct TreeNode{
 
     TreeNode(){};
 
-    TreeNode(std::string in_title, std::string in_genre, int in_quantity, int in_rating, std::vector<std::string> in_system)
+    TreeNode(std::string in_title, std::string in_genre, int in_quantity, int in_rating, int in_system)
     {
         //ranking = in_ranking;
         title = in_title;
@@ -45,16 +45,16 @@ class Tree
         void printConsolInventory(std::string type);
         int countNodes();
         void removeGame(std::string title, std::string system); //should we have this or just have it say out of stock?
-        void addNode(std::string title, std::string type, int quantity, int rating, std::vector<std::string> systems);
+        void addNode(std::string title, std::string systems, std::string type, int quantity, int rating);
         void findGame(std::string title, std::string system, std::string genre);
         void rentGame(std::string title, std::string system);
         void returnGame(std::string title, std::string system);
         void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
         void recommendGame(int rating, std::string type, std::vector<std::string> system);
-        void sortVectors();
-        int hashSum(std::string title);
-       // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
+       // void sortVectors();
 
+       // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
+        void printAllVectors();
 
     protected:
     private:
@@ -70,6 +70,8 @@ class Tree
         TreeNode* searchGames(TreeNode * x, std::string title, std::string system, std::string genre);
         std::vector<TreeNode*> getSystemVector(std::string system);
         std::vector<TreeNode*> getGenreVector(std::string genre);
+        int hashSum(std::string title);
+        bool myfunction (int i,int j);
         TreeNode *root;
         std::vector<TreeNode*> XBONElist;
         std::vector<TreeNode*> PS4list;
@@ -79,6 +81,8 @@ class Tree
         std::vector<TreeNode*> RPGList;
         std::vector<TreeNode*> ActionList;
         std::vector<TreeNode*> Fightlist;
+
+
 
 };
 
