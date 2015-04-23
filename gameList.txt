@@ -11,11 +11,16 @@ The Elder Scrolls V: Skyrim,PS3/XB360,rpg,3,10
 Street Fighter IV,PS3/XB360,fighting,9,7
 Destiny,PS3/XB360/PS4/XBONE,rpg,1,8
 Bloodborne,PS4,rpg,3,9
-Sunset Overdrive,XBONE,action,5,9 
-Titanfall,XBONE,fps,1,9
-Call of Duty: Advanced Warfare,XBONE/PS4,fps,3,7
+Sunset Overdrive,XBONE,action,5,9
+Titanfall,XBONE/XB360,shooter,1,9
+Call of Duty: Advanced Warfare,XBONE/PS4,shooter,3,7
 Dead Rising 3,XBONE,action,6,8
 Dark Souls II: Scholar of the First Sin,PS4/XBONE,rpg,7,8
-Halo: Master Chief Collection,XBONE,fps,3,9
-Evolve,XBONE,fps,2,8
+Halo: Master Chief Collection,XBONE,shooter,3,9
+Evolve,XBONE,shooter,2,8
 Dark Souls,PS3/XB360,rpg,8,8
+Rambo,XB360,shooter,6,2
+Hulk,PS3/XB360,action,6,1
+Contrast,PS3/XB360/PS4/XBONE,action,4,6
+Finding Nemo,PS3/XB360,action,3,1
+Clash of Titans,PS4/XB360,rpg,4,4
