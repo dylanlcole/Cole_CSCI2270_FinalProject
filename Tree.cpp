@@ -369,16 +369,16 @@ void Tree::findGame(string title, string system, string genre)
 
          cout << "Game Info:" << endl;
          cout << "===========" << endl;
-         cout << "Title:" << x->title << endl;
-         cout << "Genre:" << x->genre << endl;
-         cout << "Quantity:" << x->quantity << endl;
-         cout << "Rating:" << x->rating << endl;
+         cout << "Title: " << x->title << endl;
+         cout << "Genre: " << x->genre << endl;
+         cout << "Quantity: " << x->quantity << endl;
+         cout << "Rating: " << x->rating << endl;
       }
 }
 
 void Tree::rentGame(string title, string system)
 {
-    TreeNode *x = searchGames(root, title, system, "");
+    TreeNode *x = searchGames(root, title, system, "N/A");
     if(x->quantity == 0)
     {
         cout << "Game not available" << endl;
@@ -386,14 +386,13 @@ void Tree::rentGame(string title, string system)
     else if( x != NULL)
     {
          cout << "Game has been rented." << endl;
-         cout << "Game Info:" << endl;
+         cout << "Game Info: " << endl;
          cout << "===========" << endl;
-         cout << "Title:" << x->title << endl;
-         cout << "Genre:" << x->genre << endl;
-
-         x->quantity = (x->quantity - 1);
-         cout <<"Quantity:" << x->quantity << endl;
-         cout << "Rating:" << x->rating << endl;
+         cout << "Title: " << x->title << endl;
+         cout << "Genre: " << x->genre << endl;
+         x->quantity = x->quantity - 1;
+         cout <<"Quantity: " << x->quantity << endl;
+         cout << "Rating: " << x->rating << endl;
     }
 
 }
@@ -424,11 +423,11 @@ void Tree::tradeGame(string title, string titlesystem, string trade, string trad
 {
     TreeNode *x = searchGames(root, title, titlesystem, "N/A");
     TreeNode *y = searchGames(root, trade, tradesystem, "N/A");
-    if(x == NULL && y == NULL)
+    if(x == NULL || y == NULL)
     {
         cout << "One of the games not found" << endl;
     }
-    else if( x != NULL)
+    else if( x != NULL && y != NULL)
     {
          cout << "Game has been traded." << endl;
          cout << "Old Game Info:" << endl;
@@ -462,9 +461,29 @@ void Tree::DeleteAll(TreeNode* node)
 
 }
 
-bool Tree::myfunction (int i,int j)
+vector<TreeNode*> Tree::bubbleSort(vector<TreeNode*> currentVect)
 {
-    return (i<j);
+    //printAllVectors();
+    bool didSort = false;
+    do
+    {
+        didSort = false;
+    for(int i = 0; i < currentVect.size(); i++)
+    {
+        if(i != currentVect.size()-1)
+        {
+
+        if(currentVect[i]->title.compare(currentVect[i+1]->title) > 0)
+        {
+            TreeNode *temp = currentVect[i+1];
+            currentVect[i+1] = currentVect[i];
+            currentVect[i] = temp;
+            didSort = true;
+        }
+        }
+    }
+    } while(didSort == true);
+    return currentVect;
 }
 void Tree::sortVectors(TreeNode * node)
 {
@@ -480,7 +499,7 @@ void Tree::sortVectors(TreeNode * node)
                                                     //XBONE = 2
         //Sort into system vectors
 
-        cout << "sorting" << node->title << endl;
+       // cout << "sorting" << node->title << endl;
 
         int currentsystem = node->systems;
 
@@ -491,6 +510,11 @@ void Tree::sortVectors(TreeNode * node)
             XBONElist.push_back(node);
             XB360list.push_back(node);
 
+            PS3list = bubbleSort(PS3list);
+            XB360list = bubbleSort(XB360list);
+            PS4list = bubbleSort(PS4list);
+            XBONElist = bubbleSort(XBONElist);
+
 
         }
         else if(currentsystem == 8) //Old gen Only
@@ -498,37 +522,64 @@ void Tree::sortVectors(TreeNode * node)
             PS3list.push_back(node);
             XB360list.push_back(node);
 
+            PS3list = bubbleSort(PS3list);
+            XB360list = bubbleSort(XB360list);
+
         }
         else if(currentsystem == 12) //Next gen only
         {
             PS4list.push_back(node);
             XBONElist.push_back(node);
+
+            PS4list = bubbleSort(PS4list);
+            XBONElist = bubbleSort(XBONElist);
         }
         else if(currentsystem == 6) //Xbox only
         {
             XBONElist.push_back(node);
             XB360list.push_back(node);
+
+
+            XB360list = bubbleSort(XB360list);
+
+            XBONElist = bubbleSort(XBONElist);
         }
         else if(currentsystem == 0) //playstations only
         {
             PS3list.push_back(node);
             PS4list.push_back(node);
+
+            PS3list = bubbleSort(PS3list);
+
+            PS4list = bubbleSort(PS4list);
+
         }
         else if(currentsystem == 4) //PS3 Only
         {
             PS3list.push_back(node);
+
+            PS3list = bubbleSort(PS3list);
+
         }
         else if(currentsystem == 13) //XB360 Only
         {
             XB360list.push_back(node);
+
+            XB360list = bubbleSort(XB360list);
+
         }
         else if(currentsystem == 5) //PS4 ONLY
         {
             PS4list.push_back(node);
+
+            PS4list = bubbleSort(PS4list);
+
         }
         else if(currentsystem == 2) //XBONE ONLY
         {
             XBONElist.push_back(node);
+
+            XBONElist = bubbleSort(XBONElist);
         }
 
 
@@ -571,12 +622,32 @@ int Tree::hashSum(string title)
 
 void Tree::printAllVectors()
 {
+    cout <<"360" << endl;
     for(int i = 0; i < XB360list.size(); i++)
     {
         cout << XB360list[i]->title << endl;
     }
+
+    cout << "++++++++++++++++++++++++++++++" <<endl;
+    cout <<"ps3" << endl;
+    for(int i = 0; i < PS3list.size(); i++)
+    {
+       cout << PS3list[i]->title << endl;
+    }
+
+        cout << "++++++++++++++++++++++++++++++" <<endl;
+        cout << "ps4" << endl;
     for(int i = 0; i < PS4list.size(); i++)
     {
-        //cout << PS4list[i]->title << endl;
+       cout << PS4list[i]->title << endl;
     }
+
+        cout << "++++++++++++++++++++++++++++++" <<endl;
+        cout << "XBONE" << endl;
+    for(int i = 0; i < XBONElist.size(); i++)
+    {
+        cout << XBONElist[i]->title << endl;
+    }
+
+
 }
