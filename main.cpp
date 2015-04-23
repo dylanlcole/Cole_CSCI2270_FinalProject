@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Tree.h"
 
 using namespace std;
 
@@ -12,6 +13,8 @@ int main(int argc, char * argv[])
     if (argc == 1) file.open("gameList.txt");//open gameList.txt if no other file names are provided
     else file.open(argv[1]);//otherwise open what is provided in the call
     if(file.fail()) { return -1; }
+
+    Tree *T = new Tree;
 
     //////////////////////////////////////////
     ////////Read in text file to get games////
@@ -30,13 +33,21 @@ int main(int argc, char * argv[])
         getline(line,format,',');
         getline(line,type,',');
         getline(line,tempWord,',');
-        rating = atoi (tempWord.c_str());
-        getline(line,tempWord);
         stock = atoi (tempWord.c_str());
+        getline(line,tempWord);
+        rating = atoi (tempWord.c_str());
         //cout<<title<<format<<type<<rating<<stock<<endl;
-        //treeAdd(title,format,type,rating,stock);
+        //cout << "about to add " << title << endl;
+        T->addNode(title,format,type,stock, rating);
+
+       // cout << "added " << title << endl;
 
     }
+
+    //T->sortVectors();
+    //T->printInventory();
+    T->printAllVectors();
+   // T->printGenreInventory("Fighting");
 
 
     return 0;
