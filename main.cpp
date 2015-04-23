@@ -137,15 +137,33 @@ int main(int argc, char * argv[])
             getline(cin,system);
             T->returnGame(title,system);
         }
-
-       /* if (numIn == 11) {
+        if (numIn == 10) {
+            string title, trade, system, tradeSys;
+            cout<<"Enter title of game to trade in."<<endl;
+            cin.ignore();
+            getline(cin,title);
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,system);
+            cout<<"Enter title of game to receive."<<endl;
+            getline(cin,trade);
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,tradeSys);
+            T->tradeGame(title,system,trade,tradeSys);
+        }
+        if (numIn == 11) {
             cout<<"Enter any of the following: Title, system, genre, or rating:"<<endl;
-            string lineIn;
-            getline(cin,lineIn);
-            if (lineIn == "XB360" || lineIn == "XBONE" || lineIn == "PS4" || lineIn == "PS4") {
-                T->findGame()
+            string system,type;
+            int rating;
+            cout<<"Enter systems if applicable, other \"N/A\"."<<endl;
+            cin.ignore();
+            getline(cin,system);
+            cout<<"Enter genre if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,type);
+            cout<<"Enter a minimum rating, or 0 if it doesn't matter."<<endl;
+            cin>>rating;
+            T->recommendGame(rating,type,system);
             }
-        }*/
+        }
 
 
     }
