@@ -50,7 +50,7 @@ class Tree
         void rentGame(std::string title, std::string system);
         void returnGame(std::string title, std::string system);
         void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
-        void recommendGame(int rating, std::string type, std::vector<std::string> system);
+        void recommendGame(int rating, std::string type, std::string system);
        // void sortVectors();
 
        // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
@@ -62,7 +62,7 @@ class Tree
         //void swapNode(TreeNode *oldnode, TreeNode *newnode);
         void DeleteAll(TreeNode * node); //use this for the post-order traversal deletion of the tree
         void sortVectors(TreeNode * node);
-        void printInventory(TreeNode * node);
+        void printInventory(TreeNode * node, int rating);
         void printGenreInventory(std::vector<TreeNode*> genreList);
         void printConsolInventory(std::vector<TreeNode*> consolList);
         int countNodes(TreeNode *node);
