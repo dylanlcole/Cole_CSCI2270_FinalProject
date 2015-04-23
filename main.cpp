@@ -46,8 +46,19 @@ int main(int argc, char * argv[])
 
     //T->sortVectors();
     //T->printInventory();
-    T->printAllVectors();
-   // T->printGenreInventory("Fighting");
+    //T->printAllVectors();
+    //T->printGenreInventory("Fighting");
+    //T->printConsolInventory("XBONE");
+    //cout << T->countNodes() << endl;
+    //T->removeGame("Titanfall", "XBONE");
+    //T->removeGame("Destiny", "XB360");
+    T->findGame("Dark Souls", "N/A", "N/A");
+    //T->removeGame("Dark Souls", "PS3");
+    //T->findGame("Dark Souls", "N/A", "N/A");
+    T->rentGame("Dark Souls", "N/A");
+    T->returnGame("Dark Souls", "XB360");
+    T->tradeGame("Titanfall", "XBONE", "Dark Souls", "N/A");
+    T->tradeGame("Titanfall", "XBONE", "XXXXXXXX", "N/A");
 
 
     return 0;
