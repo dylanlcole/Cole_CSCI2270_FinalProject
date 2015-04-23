@@ -65,11 +65,11 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
             cout << "Game not found" << endl;
         }
     }
-    else if(title != "N/A" && system == "N/A" && genre != "N/A")
+    else if(title != "N/A" && system == "N/A" && genre != "N/A") //given a genre and no system
     {
         bool found = false;
 
-        std::vector<TreeNode*> tempList = getGenreVector(genre);
+        vector<TreeNode*> tempList = getGenreVector(genre);
 
         for(int i = 0; i < tempList.size(); i++)
         {
@@ -234,21 +234,23 @@ void Tree::addNode(string title, string system, string genre, int quantity, int 
 
 void Tree::printInventory()
 {
-        printInventory(root);
+        printInventory(root, 0);
 }
 
-void Tree::printInventory(TreeNode* node)
+void Tree::printInventory(TreeNode* node, int rating)
 {
     if(node->leftChild != NULL)
     {
-        printInventory(node->leftChild);
+        printInventory(node->leftChild, rating);
     }
-
-    std::cout << "Game: " << node->title << std::endl;
+    if(node->rating >= rating)
+    {
+        std::cout << "Game: " << node->title << std::endl;
+    }
 
     if(node->rightChild != NULL)
     {
-        printInventory(node->rightChild);
+        printInventory(node->rightChild, rating);
     }
 }
 
@@ -451,10 +453,6 @@ void Tree::tradeGame(string title, string titlesystem, string trade, string trad
 
 }
 
-void Tree::recommendGame(int rating, string type, vector<string> system)
-{
-
-}
 
 void Tree::DeleteAll(TreeNode* node)
 {
@@ -647,6 +645,41 @@ void Tree::printAllVectors()
     for(int i = 0; i < XBONElist.size(); i++)
     {
         cout << XBONElist[i]->title << endl;
+    }
+
+
+}
+
+void Tree::recommendGame(int rating, string genre, string system)
+{
+    vector<TreeNode*> GameList;
+    bool useVect = false;
+    if(genre != "N/A")
+    {
+        GameList = getGenreVector(genre);
+        useVect = true;
+    }
+    else if(system != "N/A")
+    {
+        GameList = getSystemVector(system);
+        useVect = true;
+    }
+
+
+    if(useVect == true)
+    {
+        for(int i = 0; i < GameList.size(); i++)
+        {
+            if(GameList[i]->rating >= rating)
+            {
+                cout << GameList[i]->title << endl;
+            }
+        }
+    }
+    else
+    {
+        //print inventory with restrictions
+        printInventory(root, rating);
     }
 
 
