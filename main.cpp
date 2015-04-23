@@ -62,7 +62,7 @@ int main(int argc, char * argv[])
         cin>>numIn;
 
         if (numIn == 1) {
-            T->printAllVectors();
+            T->printInventory();
         }
         if (numIn == 2) {
             cin.ignore();
@@ -88,14 +88,56 @@ int main(int argc, char * argv[])
             cout<<"Number of games: "<<T->countNodes()<<endl;
         }
         if (numIn == 5) {
-            string title, console;
+            string title, systems;
+            cout<<"Enter title."<<endl;
             cin.ignore();
-            cout<<"Enter the title of the game:"<<endl;
             getline(cin,title);
-            cout<<"Enter the console it is on:"<<endl;
-            getline(cin,console);
-            T->removeGame(title,console);
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,systems);
+            T->removeGame(title,systems);
         }
+        if (numIn == 6) {
+            string title, systems, type;
+            int quantity, rating;
+            cout<<"Enter title, systems, genre, quantity, and rating:"<<endl;
+            cin.ignore();
+            getline(cin,title);
+            cout<<"System should be separated by '/'"<<endl;
+            getline(cin,systems);
+            getline(cin,type);
+            cin>>quantity;
+            cin>>rating;
+            T->addNode(title,systems,type,quantity,rating);
+        }
+        if (numIn == 7) {
+            string title, systems, type;
+            cout<<"Enter title."<<endl;
+            cin.ignore();
+            getline(cin,title);
+            cout<<"Enter system and genre if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,systems);
+            getline(cin,type);
+            T->findGame(title,systems,type);
+        }
+        if (numIn == 8) {
+            string title, type;
+            cout<<"Enter title."<<endl;
+            cin.ignore();
+            getline(cin,title);
+            cout<<"Enter genre if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,type);
+            T->rentGame(title,type);
+        }
+        if (numIn == 9) {
+            string title, system;
+            cout<<"Enter title of game to return."<<endl;
+            cin.ignore();
+            getline(cin,title);
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
+            getline(cin,system);
+            T->returnGame(title,system);
+        }
+
        /* if (numIn == 11) {
             cout<<"Enter any of the following: Title, system, genre, or rating:"<<endl;
             string lineIn;
