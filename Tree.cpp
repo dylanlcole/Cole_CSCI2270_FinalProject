@@ -50,13 +50,15 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         bool found = false;
 
         std::vector<TreeNode*> tempList = getSystemVector(system);
-
-        for(int i = 0; i < tempList.size(); i++)
+        if(tempList.size() != 0)
         {
-            if(tempList[i]->title == title)
+            for(int i = 0; i < tempList.size(); i++)
             {
-                found = true;
-                return tempList[i];
+                if(tempList[i]->title == title)
+                {
+                    found = true;
+                    return tempList[i];
+                }
             }
         }
 
@@ -71,13 +73,15 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         bool found = false;
 
         vector<TreeNode*> tempList = getGenreVector(genre);
-
-        for(int i = 0; i < tempList.size(); i++)
+        if(tempList.size() != 0)
         {
-            if(tempList[i]->title == title)
+            for(int i = 0; i < tempList.size(); i++)
             {
-                found = true;
-                return tempList[i];
+                if(tempList[i]->title == title)
+                {
+                    found = true;
+                    return tempList[i];
+                }
             }
         }
 
@@ -93,13 +97,15 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         bool found = false;
 
         std::vector<TreeNode*> tempList = getSystemVector(system);
-
-        for(int i = 0; i < tempList.size(); i++)
+        if(tempList.size() != 0)
         {
-            if(tempList[i]->title == title)
+            for(int i = 0; i < tempList.size(); i++)
             {
-                found = true;
-                return tempList[i];
+                if(tempList[i]->title == title)
+                {
+                    found = true;
+                    return tempList[i];
+                }
             }
         }
 
@@ -112,7 +118,7 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
 
 }
 
-std::vector<TreeNode*> Tree::getSystemVector(string system)
+vector<TreeNode*> Tree::getSystemVector(string system)
 {
     if(system == "XB360")
     {
@@ -130,11 +136,16 @@ std::vector<TreeNode*> Tree::getSystemVector(string system)
     {
         return PS4list;
     }
+    else
+    {
+        vector<TreeNode*> nullVect;
+        return nullVect;
+    }
 
 
 }
 
-std::vector<TreeNode*> Tree::getGenreVector(string genre)
+vector<TreeNode*> Tree::getGenreVector(string genre)
 {
     if(genre == "Shooter")
     {
@@ -151,6 +162,11 @@ std::vector<TreeNode*> Tree::getGenreVector(string genre)
     else if(genre == "Fighting")
     {
         return Fightlist;
+    }
+    else
+    {
+        vector<TreeNode*> nullVect;
+        return nullVect;
     }
 
 
@@ -404,10 +420,10 @@ void Tree::rentGame(string title, string system)
 
 void Tree::returnGame(string title, string system)
 {
-    TreeNode *x = searchGames(root, title, system, "");
+    TreeNode *x = searchGames(root, title, system, "N/A");
     if(x == NULL)
     {
-        cout << "Game not found" << endl;
+        //cout << "Game not found" << endl;
     }
     else if( x != NULL)
     {
