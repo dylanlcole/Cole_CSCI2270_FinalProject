@@ -71,7 +71,7 @@ class Tree
         std::vector<TreeNode*> getSystemVector(std::string system);
         std::vector<TreeNode*> getGenreVector(std::string genre);
         int hashSum(std::string title);
-        bool myfunction (int i,int j);
+        std::vector<TreeNode*> bubbleSort(std::vector<TreeNode*> currentVect);
         TreeNode *root;
         std::vector<TreeNode*> XBONElist;
         std::vector<TreeNode*> PS4list;
