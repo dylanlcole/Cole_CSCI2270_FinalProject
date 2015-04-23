@@ -2,11 +2,13 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 Tree::Tree()
 {
     //ctor
+    root = NULL;
 }
 
 Tree::~Tree()
@@ -151,17 +153,57 @@ std::vector<TreeNode*> Tree::getGenreVector(string genre)
 
 }
 
-void Tree::addNode(string title, string type, int quantity, int rating, vector<string> system)
+void Tree::addNode(string title, string system, string genre, int quantity, int rating)
 {
+    //cout << system << endl;
+   int systemID = hashSum(system);
 
+   TreeNode *x = root;
+    TreeNode *y = NULL;
+
+        while(x != NULL)
+        {
+            y = x;
+            if(title.compare(x->title) < 0)
+            {
+                x = x->leftChild;
+
+            }else{
+                x = x->rightChild;
+            }
+        }
+    //x = new TreeNode(ranking, name, released, stock);
+    x = new TreeNode(title, genre, quantity, rating, systemID);
+    x->parent = y;
+    x->leftChild = NULL;
+    x->rightChild = NULL;
+    if( y == NULL)
+        {
+            root = x;
+
+        }
+    else if(title.compare(y->title) <  0)
+        {
+            y->leftChild = x;
+
+    }else{
+            y->rightChild = x;
+
+        }
+
+    sortVectors(x);
+
+    /*
     // Create node
-    TreeNode * newGame = new TreeNode(title, type, quantity, rating, system);
+    TreeNode * newGame = new TreeNode(title, type, quantity, rating, systemID);
     TreeNode * x = root;
     TreeNode * y = NULL;
 
     // if tree == empty
     if (root == NULL)
+    {
         root = newGame;
+    }
 
     // if tree != empty
     else
@@ -169,6 +211,8 @@ void Tree::addNode(string title, string type, int quantity, int rating, vector<s
         while (x != NULL)
         {
             y = x;
+            cout << "new game ::" << newGame->title << endl;
+            cout << "compare game :: " << x->title << endl;
             if(newGame->title.compare(x->title) < 0)
                 x = x->leftChild;
             else
@@ -184,52 +228,8 @@ void Tree::addNode(string title, string type, int quantity, int rating, vector<s
         else
             y->rightChild = newGame;
     }
-/*
-    //Sort into system vectors
-    for( int i = 0; i < newGame->systems.size(); i++)
-    {
-        string currentsystem = newGame->systems[i];
-
-        if(currentsystem == "PS3")
-        {
-            PS3list.push_back(newGame);
-        }
-        else if(currentsystem == "XB360")
-        {
-            XB360list.push_back(newGame);
-        }
-        else if(currentsystem == "XBONE")
-        {
-            XBONElist.push_back(newGame);
-        }
-        else if(currentsystem == "PS4")
-        {
-            PS4list.push_back(newGame);
-        }
-
-    }
-
-    //Sort into genre vector
-
-    string currrentgenre = newGame->genre;
-
-    if(currrentgenre == "rpg")
-    {
-        RPGList.push_back(newGame);
-    }
-    else if(currrentgenre == "fighting")
-    {
-        Fightlist.push_back(newGame);
-    }
-    else if(currrentgenre == "shooter")
-    {
-        Shooterlist.push_back(newGame);
-    }
-    else if(currrentgenre == "action")
-    {
-        ActionList.push_back(newGame);
-    }
     */
+
 }
 
 void Tree::printInventory()
@@ -276,7 +276,7 @@ void Tree::printGenreInventory(vector<TreeNode*> genreList)
 {
     for(int i = 0; i < genreList.size(); i++)
     {
-        cout << genreList[i] << endl;
+        cout << genreList[i]->title << endl;
     }
 }
 
@@ -304,7 +304,7 @@ void Tree::printConsolInventory(vector<TreeNode*> consolList)
 {
     for(int i; i < consolList.size(); i++)
     {
-        cout << consolList[i] << endl;
+        cout << consolList[i]->title << endl;
     }
 }
 
@@ -462,40 +462,76 @@ void Tree::DeleteAll(TreeNode* node)
 
 }
 
-void Tree::sortVectors()
+bool Tree::myfunction (int i,int j)
 {
-    sortVectors(root);
+    return (i<j);
 }
-
 void Tree::sortVectors(TreeNode * node)
 {
-    if(node->leftChild != NULL)
-    {
-        printInventory(node->leftChild);
-    }
+                                                //HASH VALUES
+                                                    //All Consols  = 11
+                                                    //Old Gen = 8
+                                                    //Next Gen = 12
+                                                    //Xboxes = 6
+                                                    //Playstations = 0
+                                                    //PS3 = 4
+                                                    //XB360  = 13
+                                                    //PS4 = 5
+                                                    //XBONE = 2
         //Sort into system vectors
-    for( int i = 0; i < node->systems.size(); i++)
-    {
-        string currentsystem = node->systems[i];
 
-        if(currentsystem == "PS3")
+        cout << "sorting" << node->title << endl;
+
+        int currentsystem = node->systems;
+
+        if(currentsystem == 11) //Everything
+        {
+            PS3list.push_back(node);
+            PS4list.push_back(node);
+            XBONElist.push_back(node);
+            XB360list.push_back(node);
+
+
+        }
+        else if(currentsystem == 8) //Old gen Only
+        {
+            PS3list.push_back(node);
+            XB360list.push_back(node);
+
+        }
+        else if(currentsystem == 12) //Next gen only
+        {
+            PS4list.push_back(node);
+            XBONElist.push_back(node);
+        }
+        else if(currentsystem == 6) //Xbox only
+        {
+            XBONElist.push_back(node);
+            XB360list.push_back(node);
+        }
+        else if(currentsystem == 0) //playstations only
+        {
+            PS3list.push_back(node);
+            PS4list.push_back(node);
+        }
+        else if(currentsystem == 4) //PS3 Only
         {
             PS3list.push_back(node);
         }
-        if(currentsystem == "XB360")
+        else if(currentsystem == 13) //XB360 Only
         {
             XB360list.push_back(node);
         }
-        if(currentsystem == "XBONE")
-        {
-            XBONElist.push_back(node);
-        }
-        if(currentsystem == "PS4")
+        else if(currentsystem == 5) //PS4 ONLY
         {
             PS4list.push_back(node);
         }
+        else if(currentsystem == 2) //XBONE ONLY
+        {
+            XBONElist.push_back(node);
+        }
 
-    }
+
 
     //Sort into genre vector
 
@@ -518,10 +554,6 @@ void Tree::sortVectors(TreeNode * node)
         ActionList.push_back(node);
     }
 
-    if(node->rightChild != NULL)
-    {
-        printInventory(node->rightChild);
-    }
 }
 
 int Tree::hashSum(string title)
@@ -535,4 +567,16 @@ int Tree::hashSum(string title)
     }
     sum = sum % hashSize;
     return sum;
+}
+
+void Tree::printAllVectors()
+{
+    for(int i = 0; i < XB360list.size(); i++)
+    {
+        cout << XB360list[i]->title << endl;
+    }
+    for(int i = 0; i < PS4list.size(); i++)
+    {
+        //cout << PS4list[i]->title << endl;
+    }
 }
