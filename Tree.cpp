@@ -63,6 +63,7 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         if (found == false)
         {
             cout << "Game not found" << endl;
+            return NULL;
         }
     }
     else if(title != "N/A" && system == "N/A" && genre != "N/A") //given a genre and no system
@@ -83,6 +84,7 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         if (found == false)
         {
             cout << "Game not found" << endl;
+            return NULL;
         }
 
     }
@@ -104,6 +106,7 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
         if (found == false)
         {
             cout << "Game not found" << endl;
+            return NULL;
         }
     }
 
@@ -589,18 +592,26 @@ void Tree::sortVectors(TreeNode * node)
     if(currrentgenre == "rpg")
     {
         RPGList.push_back(node);
+
+        RPGList = bubbleSort(RPGList);
     }
     else if(currrentgenre == "fighting")
     {
         Fightlist.push_back(node);
+
+        Fightlist = bubbleSort(Fightlist);
     }
     else if(currrentgenre == "shooter")
     {
         Shooterlist.push_back(node);
+
+        Shooterlist = bubbleSort(Shooterlist);
     }
     else if(currrentgenre == "action")
     {
         ActionList.push_back(node);
+
+        ActionList = bubbleSort(ActionList);
     }
 
 }
