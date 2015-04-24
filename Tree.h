@@ -44,29 +44,25 @@ class Tree
         void printGenreInventory(std::string type);
         void printConsolInventory(std::string type);
         int countNodes();
-        void removeGame(std::string title, std::string system); //should we have this or just have it say out of stock?
+        void removeGame(std::string title, std::string system);
         void addNode(std::string title, std::string systems, std::string type, int quantity, int rating);
         void findGame(std::string title, std::string system, std::string genre);
         void rentGame(std::string title, std::string system);
         void returnGame(std::string title, std::string system);
         void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
         void recommendGame(int rating, std::string type, std::string system);
-       // void sortVectors();
 
-       // void updateGame(std::string title, std::string type, int rating, std::string newsystem);
         void printAllVectors();
 
     protected:
     private:
-        //TreeNode* findMin(TreeNode * node);
-        //void swapNode(TreeNode *oldnode, TreeNode *newnode);
-        void DeleteAll(TreeNode * node); //use this for the post-order traversal deletion of the tree
+
         void sortVectors(TreeNode * node);
         void printInventory(TreeNode * node, int rating);
         void printGenreInventory(std::vector<TreeNode*> genreList);
         void printConsolInventory(std::vector<TreeNode*> consolList);
         int countNodes(TreeNode *node);
-        //vector<std::string> recommendGame();
+
         TreeNode* searchGames(TreeNode * x, std::string title, std::string system, std::string genre);
         std::vector<TreeNode*> getSystemVector(std::string system);
         std::vector<TreeNode*> getGenreVector(std::string genre);
