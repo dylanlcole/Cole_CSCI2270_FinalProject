@@ -132,6 +132,19 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
     }
 
 }
+/*
+Function prototype:
+vector<TreeNode*> Tree::getSystemVector(string system);
+
+Function description:
+This function finds the system vector that is associated with the string given
+
+Example:
+vector<TreeNode*> tempVector = getSystemVector("PS3");
+
+Pre-conditions: a system that has been read from the test file
+Post-conditions: returns a vector of Tree node pointers
+*/
 
 vector<TreeNode*> Tree::getSystemVector(string system)
 {
@@ -159,6 +172,19 @@ vector<TreeNode*> Tree::getSystemVector(string system)
 
 
 }
+/*
+Function prototype:
+vector<TreeNode*> Tree::getGenreVector(string system);
+
+Function description:
+This function finds the genre vector that is associated with the string given
+
+Example:
+vector<TreeNode*> tempVector = getGenreVector("PS3");
+
+Pre-conditions: a genre that has been read from the test file
+Post-conditions: returns a vector of Tree node pointers
+*/
 
 vector<TreeNode*> Tree::getGenreVector(string genre)
 {
@@ -187,9 +213,24 @@ vector<TreeNode*> Tree::getGenreVector(string genre)
 
 }
 
+/*
+Function Prototype:
+void Tree::addNode(string title, string system, string genre, int quantity, int rating);
+
+Function description:
+This function takes the information from the line in the text file, turns it into a node,
+and adds it to the tree.
+
+Example:
+Tree T;
+T->addNode("Portal 2", "PS3/XB360", "action", "8", "10")
+
+Pre-conditions: tree must have a root
+Post-conditions: tree has new node
+*/
+
 void Tree::addNode(string title, string system, string genre, int quantity, int rating)
 {
-    //cout << system << endl;
    int systemID = hashSum(system);
 
    TreeNode *x = root;
@@ -206,7 +247,6 @@ void Tree::addNode(string title, string system, string genre, int quantity, int 
                 x = x->rightChild;
             }
         }
-    //x = new TreeNode(ranking, name, released, stock);
     x = new TreeNode(title, genre, quantity, rating, systemID);
     x->parent = y;
     x->leftChild = NULL;
@@ -226,50 +266,39 @@ void Tree::addNode(string title, string system, string genre, int quantity, int 
         }
 
     sortVectors(x);
-
-    /*
-    // Create node
-    TreeNode * newGame = new TreeNode(title, type, quantity, rating, systemID);
-    TreeNode * x = root;
-    TreeNode * y = NULL;
-
-    // if tree == empty
-    if (root == NULL)
-    {
-        root = newGame;
-    }
-
-    // if tree != empty
-    else
-    {
-        while (x != NULL)
-        {
-            y = x;
-            cout << "new game ::" << newGame->title << endl;
-            cout << "compare game :: " << x->title << endl;
-            if(newGame->title.compare(x->title) < 0)
-                x = x->leftChild;
-            else
-                x = x->rightChild;
-
-        }
-        // set parent.
-        newGame->parent = y;
-
-        // Determine children
-        if (newGame->title.compare(y->title) < 0)
-            y->leftChild = newGame;
-        else
-            y->rightChild = newGame;
-    }
-    */
-
 }
+/*
+Function prototype:
+void Tree::printInventory();
+
+Function description:
+This function calls printInventory with a root and a rating of 0
+
+Example:
+Tree T
+T->printInventory()
+
+Pre-conditions: tree as been built
+Post-conditions: prints all nodes
+*/
 
 void Tree::printInventory()
 {
         printInventory(root, 0);
 }
+/*
+Function prototype:
+void Tree::printInventory(TreeNode* node, int rating);
+
+Function description:
+This function traverses the tree and prints the inventory that has rating >= given rating
+
+Example:
+printInventory(root, 5)
+
+Pre-conditions: tree as been built
+Post-conditions: prints all nodes with given rating
+*/
 
 void Tree::printInventory(TreeNode* node, int rating)
 {
@@ -287,6 +316,22 @@ void Tree::printInventory(TreeNode* node, int rating)
         printInventory(node->rightChild, rating);
     }
 }
+
+/*
+Function prototype:
+void Tree::printGenreInventory(string type);
+
+Function description:
+This function sends the vector to the private printGenreInventory function to print all nodes in
+the vector
+
+Example:
+Tree T
+T->printGenreInventory("Shooter")
+
+Pre-conditions: type is a valid string
+Post-conditions: prints the inventory
+*/
 
 void Tree::printGenreInventory(string type)
 {
@@ -307,6 +352,19 @@ void Tree::printGenreInventory(string type)
         printGenreInventory(Fightlist);
     }
 }
+/*
+Function prototype:
+void Tree::printGenreInventory(vector<TreeNode*> genreList);
+
+Function description:
+Using the given vector and printing it elements
+
+Example:
+printGenreInventory(ActionList)
+
+Pre-conditions: the vector consists of GameNode*
+Post-conditions: prints the inventory
+*/
 
 void Tree::printGenreInventory(vector<TreeNode*> genreList)
 {
@@ -315,6 +373,22 @@ void Tree::printGenreInventory(vector<TreeNode*> genreList)
         cout << genreList[i]->title << endl;
     }
 }
+
+/*
+Function prototype:
+void Tree::printConsolInventory(string type);
+
+Function description:
+This function sends the vector to the private printConsolInventory function to print all nodes in
+the vector
+
+Example:
+Tree T
+T->printConsolInventory("XBONE")
+
+Pre-conditions: type is a valid string
+Post-conditions: prints the inventory
+*/
 
 void Tree::printConsolInventory(string type)
 {
@@ -336,6 +410,20 @@ void Tree::printConsolInventory(string type)
     }
 }
 
+/*
+Function prototype:
+void Tree::printConsolInventory(vector<TreeNode*> genreList);
+
+Function description:
+Using the given vector and printing it elements
+
+Example:
+printConsolInventory(XBONEList)
+
+Pre-conditions: the vector consists of GameNode*
+Post-conditions: prints the inventory
+*/
+
 void Tree::printConsolInventory(vector<TreeNode*> consolList)
 {
     for(int i; i < consolList.size(); i++)
@@ -344,12 +432,40 @@ void Tree::printConsolInventory(vector<TreeNode*> consolList)
     }
 }
 
+/*
+Function prototype:
+int Tree::countNodes()
+
+Function description:
+This function calls private countNpdes and returns the amount of nodes in the Tree
+
+Example:
+Tree T
+int number = T->countNodes()
+
+Pre-conditions: tree has been built
+Post-conditions: returns a non-negative integer
+*/
+
 int Tree::countNodes()
 {
     int counter0 = countNodes(root);
 
     return counter0;
 }
+/*
+Function prototype:
+int Tree::countNodes(TreeNode* node)
+
+Function description:
+This function traverses the tree and counts amount of nodes in tree
+
+Example:
+countNodes(root)
+
+Pre-conditions: tree has been built
+Post-conditions: returns a non-negative integer
+*/
 
 int Tree::countNodes(TreeNode* node)
 {
@@ -385,10 +501,23 @@ int Tree::countNodes(TreeNode* node)
 
     return thecount;
 }
+/*
+Function prototype:
+void Tree::removeGame(string title, string system)
 
+Function description:
+This function updates a specific node to have an inventory of 0
+
+Example:
+Tree T
+T->removeGame("Rambo")
+
+Pre-conditions: title and system is a valid string
+Post-conditions: updates the node to have inventory of 0
+*/
 void Tree::removeGame(string title, string system)
 {
-    TreeNode *x = searchGames(root, title, system, "N/A"); //should we have searchVector or just change search Tree???
+    TreeNode *x = searchGames(root, title, system, "N/A");
 
     if(x != NULL)
     {
@@ -397,9 +526,24 @@ void Tree::removeGame(string title, string system)
     }
 }
 
+/*
+Function prototype:
+void Tree::findGame(string title, string system, string genre)
+
+Function description:
+This function looks for a game in the tree and displays its information
+
+Example:
+Tree T
+T->findGame("Portal 2", "XB360", "N/A")
+
+Pre-conditions: title, system and genre are valid strings
+Post-condition: prints the node information
+*/
+
 void Tree::findGame(string title, string system, string genre)
 {
-      TreeNode *x = searchGames(root, title, system, genre); //should we have searchVector or just change search Tree???
+      TreeNode *x = searchGames(root, title, system, genre);
       if(x != NULL)
       {
 
@@ -411,6 +555,21 @@ void Tree::findGame(string title, string system, string genre)
          cout << "Rating: " << x->rating << endl;
       }
 }
+
+/*
+Function prototype:
+void Tree::rentGame(string title, string system)
+
+Function description:
+This function finds a gameNode and removes one from the inventory.
+
+Example:
+Tree T
+T->rentGame("Portal 2", "PS3")
+
+Pre-conditions: title and system are valid string
+Post-conditions: updates the inventory
+*/
 
 void Tree::rentGame(string title, string system)
 {
@@ -433,6 +592,20 @@ void Tree::rentGame(string title, string system)
 
 }
 
+/*
+Function prototype:
+void Tree::returnGame(string title, string system)
+
+Function description:
+This function finds a gameNode and adds one to the inventory.
+
+Example:
+Tree T
+T->returnGame("Portal 2", "PS3")
+
+Pre-conditions: title and system are valid string
+Post-conditions: updates the inventory
+*/
 void Tree::returnGame(string title, string system)
 {
     TreeNode *x = searchGames(root, title, system, "N/A");
@@ -455,6 +628,21 @@ void Tree::returnGame(string title, string system)
 
 }
 
+/*
+Function Prototype:
+void Tree::tradeGame(string title, string titlesystem, string trade, string tradesystem)
+
+Function description:
+This function updates the inventory of two games of the users choosing by increasing the one by one
+and decreasing the other by one.
+
+Example:
+Tree T
+T->tradeGame("Portal 2", "PS3", "Rambo", "XB360")
+
+Pre-conditions: the strings are valid strings
+Post-conditions: the two games are updated
+*/
 void Tree::tradeGame(string title, string titlesystem, string trade, string tradesystem)
 {
     TreeNode *x = searchGames(root, title, titlesystem, "N/A");
@@ -487,12 +675,19 @@ void Tree::tradeGame(string title, string titlesystem, string trade, string trad
 
 }
 
+/*
+Function prototype:
+vector<TreeNode*> Tree::bubbleSort(vector<TreeNode*> currentVect)
 
-void Tree::DeleteAll(TreeNode* node)
-{
+Function description:
+This functions sorts the vector the the nodes are in alphabetical order
 
-}
+Example:
+bubbleSort(XB360list);
 
+Pre-condition: currentVect is a valid vector
+Post-condition: vector has been updated
+*/
 vector<TreeNode*> Tree::bubbleSort(vector<TreeNode*> currentVect)
 {
     //printAllVectors();
@@ -517,21 +712,25 @@ vector<TreeNode*> Tree::bubbleSort(vector<TreeNode*> currentVect)
     } while(didSort == true);
     return currentVect;
 }
+
+/*
+Function prototype:
+void Tree::sortVectors(TreeNode * node)
+
+Function description:
+This function sorts the given node into the correct vectors based on genre and systems
+
+Example:
+sortVectors(gameNode)
+
+Pre-conditions: node has non-NULL variables
+Post-conditions: node is added to the vectors
+
+*/
 void Tree::sortVectors(TreeNode * node)
 {
-                                                //HASH VALUES
-                                                    //All Consols  = 11
-                                                    //Old Gen = 8
-                                                    //Next Gen = 12
-                                                    //Xboxes = 6
-                                                    //Playstations = 0
-                                                    //PS3 = 4
-                                                    //XB360  = 13
-                                                    //PS4 = 5
-                                                    //XBONE = 2
-        //Sort into system vectors
 
-       // cout << "sorting" << node->title << endl;
+        //Sort into system vectors
 
         int currentsystem = node->systems;
 
@@ -647,6 +846,19 @@ void Tree::sortVectors(TreeNode * node)
 
 }
 
+/*
+Function Prototype:
+int Tree::hashSum(string title)
+
+Function description:
+This functions finds the hashSum for all of the possible system options
+
+Example:
+hashSum("XBONE")
+
+Pre-conditions: title is a valid string
+Post-conditions: returns a non-negative integer
+*/
 int Tree::hashSum(string title)
 {
     int hashSize = 14;
@@ -654,12 +866,25 @@ int Tree::hashSum(string title)
     for(int i = 0; i < title.length(); i++)
     {
         sum = sum + title[i];
-        //cout << sum << endl;
     }
     sum = sum % hashSize;
     return sum;
 }
 
+/*
+Function prototype:
+void Tree::printAllVectors()
+
+Function description:
+This function was used for debugging to see what existed in each vector.
+
+Example:
+Tree T
+T->printAllVectors()
+
+Pre-conditions: vectors have been made and nodes added to them
+Post-conditions: prints out contents of vectors
+*/
 void Tree::printAllVectors()
 {
     cout <<"360" << endl;
@@ -692,6 +917,21 @@ void Tree::printAllVectors()
 
 }
 
+/*
+Function prototype:
+void Tree::recommendGame(int rating, string genre, string system)
+
+Function description:
+This function will find games that fit the parameters that the user give it.  Rating given is a
+minimum number for the nodes.
+
+Example:
+Tree T
+T->recommendGame(4, "Action", "PS3")
+
+Pre-conditions: rating is a integer >=0.  genre and system are valid strings
+Post-conditions: prints out all games that have at least the given rating
+*/
 void Tree::recommendGame(int rating, string genre, string system)
 {
     vector<TreeNode*> GameList;
@@ -707,7 +947,7 @@ void Tree::recommendGame(int rating, string genre, string system)
         useVect = true;
     }
 
-
+    bool foundGame = false;
     if(useVect == true)
     {
         for(int i = 0; i < GameList.size(); i++)
@@ -715,7 +955,13 @@ void Tree::recommendGame(int rating, string genre, string system)
             if(GameList[i]->rating >= rating)
             {
                 cout << GameList[i]->title << endl;
+                foundGame = true;
             }
+        }
+
+        if(foundGame == false)
+        {
+            cout << "Was unable to find games to recommend" << endl;
         }
     }
     else
