@@ -15,7 +15,22 @@ Tree::~Tree()
 {
     //dtor
 }
+/*
+Function prototype:
+TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string genre);
 
+Function description:
+This function will find a game by taking in the root of the tree, the title, system, and genre.
+Based on the amount of information given, it will either search the tree or get the vector that the node
+would be a part of based on the system and/or genre
+
+Example:
+TreeNode* game = searchGames(root, "Titanfall", "XBONE", "Shooter")
+
+Pre-conditions: tree and vectors have been built and added to
+Post-conditions: returns a TreeNode pointer
+
+*/
 TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string genre)
 {
     if(title != "N/A" && system == "N/A" && genre == "N/A")
