@@ -72,6 +72,10 @@ int main(int argc, char * argv[])
             int choice;
             cout<<"Enter what genre:\n1:Shooter\n2:RPG\n3:Action\n4:Fighting"<<endl;
             cin>>choice;
+            while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+                cout<<"Enter a number between 1 and 4."<<endl;
+                cin>>choice;
+            }
             if (choice == 1) { T->printGenreInventory("Shooter"); }
             if (choice == 2) { T->printGenreInventory("RPG"); }
             if (choice == 3) { T->printGenreInventory("Action"); }
@@ -83,6 +87,10 @@ int main(int argc, char * argv[])
             int choice;
             cout<<"Enter what console:\n1:XB360\n2:XBONE\n3:PS3\n4:PS4"<<endl;
             cin>>choice;
+            while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+                cout<<"Enter a number between 1 and 4."<<endl;
+                cin>>choice;
+            }
             if (choice == 1) { T->printConsolInventory("XB360"); }
             if (choice == 2) { T->printConsolInventory("XBONE"); }
             if (choice == 3) { T->printConsolInventory("PS3"); }
@@ -113,10 +121,15 @@ int main(int argc, char * argv[])
             getline(cin,systems);
             cout<<"Select genre:\n1. RPG\n2. Fighting\n3. Shooting\n4. Action"<<endl;
             cin>>type;
+            while (type != 1 && type != 2 && type != 3 && type != 4) {
+                cout<<"Enter a number between 1 and 4."<<endl;
+                cin>>type;
+            }
             if (type == 1) { typeString = "rpg"; }
             if (type == 2) { typeString = "fighting"; }
             if (type == 3) { typeString = "shooter"; }
             if (type == 4) { typeString = "action"; }
+
             cout<<"Enter the rating:"<<endl;
             cin>>rating;
             cout<<"Enter the quantity available:"<<endl;
