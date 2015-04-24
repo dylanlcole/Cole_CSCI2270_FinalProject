@@ -61,9 +61,12 @@ int main(int argc, char * argv[])
 
         cin>>numIn;
 
+        //Print the entire inventory of games//
         if (numIn == 1) {
+            int option;
             T->printInventory();
         }
+        //print inventory of a specific genre//
         if (numIn == 2) {
             cin.ignore();
             int choice;
@@ -74,6 +77,7 @@ int main(int argc, char * argv[])
             if (choice == 3) { T->printGenreInventory("Action"); }
             if (choice == 4) { T->printGenreInventory("Fighting"); }
         }
+        //print inventory of a specific console//
         if (numIn == 3) {
             cin.ignore();
             int choice;
@@ -84,9 +88,11 @@ int main(int argc, char * argv[])
             if (choice == 3) { T->printConsolInventory("PS3"); }
             if (choice == 4) { T->printConsolInventory("PS4"); }
         }
+        //print the number of unique games//
         if (numIn == 4) {
             cout<<"Number of games: "<<T->countNodes()<<endl;
         }
+        //delete a game.  Will work with only title provided, but adding system makes it work quicker//
         if (numIn == 5) {
             string title, systems;
             cout<<"Enter title."<<endl;
@@ -96,29 +102,41 @@ int main(int argc, char * argv[])
             getline(cin,systems);
             T->removeGame(title,systems);
         }
+        //Insert a new game manually.
         if (numIn == 6) {
-            string title, systems, type;
-            int quantity, rating;
-            cout<<"Enter title, systems, genre, quantity, and rating:"<<endl;
+            string title, systems, typeString;
+            int type, quantity, rating;
+            cout<<"Enter title:"<<endl;
             cin.ignore();
             getline(cin,title);
             cout<<"System should be separated by '/'"<<endl;
             getline(cin,systems);
-            getline(cin,type);
-            cin>>quantity;
+            cout<<"Select genre:\n1. RPG\n2. Fighting\n3. Shooting\n4. Action"<<endl;
+            cin>>type;
+            if (type == 1) { typeString = "rpg"; }
+            if (type == 2) { typeString = "fighting"; }
+            if (type == 3) { typeString = "shooter"; }
+            if (type == 4) { typeString = "action"; }
+            cout<<"Enter the rating:"<<endl;
             cin>>rating;
-            T->addNode(title,systems,type,quantity,rating);
+            cout<<"Enter the quantity available:"<<endl;
+            cin>>quantity;
+
+            T->addNode(title,systems,typeString,quantity,rating);
         }
+        //Find a game a print its info, again adding system or genre speeds up the search//
         if (numIn == 7) {
             string title, systems, type;
             cout<<"Enter title."<<endl;
             cin.ignore();
             getline(cin,title);
-            cout<<"Enter system and genre if applicable, otherwise \"N/A\""<<endl;
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
             getline(cin,systems);
+            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
             getline(cin,type);
             T->findGame(title,systems,type);
         }
+        //Rent a game by title.  Adding genre speeds up the search//
         if (numIn == 8) {
             string title, type;
             cout<<"Enter title."<<endl;
@@ -128,6 +146,7 @@ int main(int argc, char * argv[])
             getline(cin,type);
             T->rentGame(title,type);
         }
+        //Return a game, adding system speeds up the return process//
         if (numIn == 9) {
             string title, system;
             cout<<"Enter title of game to return."<<endl;
@@ -137,6 +156,7 @@ int main(int argc, char * argv[])
             getline(cin,system);
             T->returnGame(title,system);
         }
+        //Trade one game for another.  Adding the system of each speeds up the process//
         if (numIn == 10) {
             string title, trade, system, tradeSys;
             cout<<"Enter title of game to trade in."<<endl;
@@ -150,6 +170,7 @@ int main(int argc, char * argv[])
             getline(cin,tradeSys);
             T->tradeGame(title,system,trade,tradeSys);
         }
+        //Recommend a game based off the inputs given.  More inputs will narrow the list of games recommended//
         if (numIn == 11) {
             cout<<"Enter any of the following: Title, system, genre, or rating:"<<endl;
             string system,type;
@@ -161,29 +182,9 @@ int main(int argc, char * argv[])
             getline(cin,type);
             cout<<"Enter a minimum rating, or 0 if it doesn't matter."<<endl;
             cin>>rating;
-            T->recommendGame(rating,type,system);
-            }
+//            T->recommendGame(rating,type,system);
         }
-
-
     }
-
-    //T->sortVectors();
-    //T->printInventory();
-    //T->printAllVectors();
-    //T->printGenreInventory("Fighting");
-    //T->printConsolInventory("XBONE");
-    //cout << T->countNodes() << endl;
-    //T->removeGame("Titanfall", "XBONE");
-    //T->removeGame("Destiny", "XB360");
-    T->findGame("Dark Souls", "N/A", "N/A");
-    //T->removeGame("Dark Souls", "PS3");
-    //T->findGame("Dark Souls", "N/A", "N/A");
-    T->rentGame("Dark Souls", "N/A");
-    T->returnGame("Dark Souls", "XB360");
-    T->tradeGame("Titanfall", "XBONE", "Dark Souls", "N/A");
-    T->tradeGame("Titanfall", "XBONE", "XXXXXXXX", "N/A");
-
 
     return 0;
 }
