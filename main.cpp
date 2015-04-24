@@ -145,7 +145,7 @@ int main(int argc, char * argv[])
             getline(cin,title);
             cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
             getline(cin,systems);
-            cout<<"Enter system if applicable, otherwise \"N/A\""<<endl;
+            cout<<"Enter genre if applicable, otherwise \"N/A\""<<endl;
             getline(cin,type);
             T->findGame(title,systems,type);
         }
