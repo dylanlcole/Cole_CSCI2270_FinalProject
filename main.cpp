@@ -172,7 +172,7 @@ int main(int argc, char * argv[])
         }
         //Recommend a game based off the inputs given.  More inputs will narrow the list of games recommended//
         if (numIn == 11) {
-            cout<<"Enter any of the following: Title, system, genre, or rating:"<<endl;
+            cout<<"Enter any of the following: System, genre, or rating."<<endl;
             string system,type;
             int rating;
             cout<<"Enter systems if applicable, other \"N/A\"."<<endl;
@@ -182,7 +182,7 @@ int main(int argc, char * argv[])
             getline(cin,type);
             cout<<"Enter a minimum rating, or 0 if it doesn't matter."<<endl;
             cin>>rating;
-//            T->recommendGame(rating,type,system);
+            T->recommendGame(rating,type,system);
         }
     }
 
