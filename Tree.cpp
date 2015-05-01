@@ -501,6 +501,29 @@ int Tree::countNodes(TreeNode* node)
 
     return thecount;
 }
+
+int Tree::gamesInStock()
+{
+	gamesInStock(root);
+}
+
+int Tree::gamesInStock(TreeNode *node)
+{
+	int count = 0;
+	if(node != NULL)
+	{
+		count = node->quantity;
+		if(node->leftChild != NULL)
+		{
+			count += gamesInStock(node->leftChild);
+		}
+		if(node->rightChild != NULL)
+		{
+			count += gamesInStock(node->rightChild);
+		}
+	}
+	return count;
+}
 /*
 Function prototype:
 void Tree::removeGame(string title, string system)
@@ -522,7 +545,7 @@ void Tree::removeGame(string title, string system)
     if(x != NULL)
     {
         x->quantity = 0;
-        cout << x->title << " has been remove from stock" << endl;
+        cout << x->title << " has been removed from stock" << endl;
     }
 }
 
@@ -580,7 +603,7 @@ void Tree::rentGame(string title, string system)
     }
     else if( x != NULL)
     {
-         cout << "Game has been rented." << endl;
+         cout << "Game has been rented" << endl;
          cout << "Game Info: " << endl;
          cout << "===========" << endl;
          cout << "Title: " << x->title << endl;
@@ -615,7 +638,7 @@ void Tree::returnGame(string title, string system)
     }
     else if( x != NULL)
     {
-         cout << "Game has been returned." << endl;
+         cout << "Game has been returned" << endl;
          cout << "Game Info:" << endl;
          cout << "===========" << endl;
          cout << "Title:" << x->title << endl;
@@ -653,7 +676,7 @@ void Tree::tradeGame(string title, string titlesystem, string trade, string trad
     }
     else if( x != NULL && y != NULL)
     {
-         cout << "Game has been traded." << endl;
+         cout << "Game has been traded" << endl;
          cout << "Old Game Info:" << endl;
          cout << "===========" << endl;
          cout << "Title:" << x->title << endl;
