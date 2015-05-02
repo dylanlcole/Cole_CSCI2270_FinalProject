@@ -44,7 +44,7 @@ int main(int argc, char * argv[])
 
     }
 
-    while (numIn != 12) {
+    while (numIn != 13) {
         cout << "======Main Menu======" << endl;
         cout <<  "1. Print full inventory" << endl;
         cout <<  "2. Print inventory of specific genre" << endl;
@@ -57,7 +57,8 @@ int main(int argc, char * argv[])
         cout <<  "9. Return game" << endl;
         cout <<  "10. Trade game" << endl;
         cout <<  "11. Game recommend" << endl;
-        cout <<  "12. Quit" << endl;
+        cout <<  "12. Total games in stock" <<endl;
+        cout <<  "13. Quit" << endl;
 
         cin>>numIn;
 
@@ -197,6 +198,10 @@ int main(int argc, char * argv[])
             cin>>rating;
             T->recommendGame(rating,type,system);
         }
+        if(numIn == 12)
+        {
+			cout<<"The total number of games in stock is: "<<T->gamesInStock()<<endl;
+		}
     }
 
     return 0;

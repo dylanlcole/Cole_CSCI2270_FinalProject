@@ -51,7 +51,8 @@ class Tree
         void returnGame(std::string title, std::string system);
         void tradeGame(std::string title, std::string titlesystem, std::string trade, std::string tradesystem);
         void recommendGame(int rating, std::string type, std::string system);
-
+		int gamesInStock(TreeNode *node);
+		int gamesInStock();
         void printAllVectors();
 
     protected:
