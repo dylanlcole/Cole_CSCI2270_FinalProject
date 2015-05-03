@@ -738,6 +738,43 @@ vector<TreeNode*> Tree::bubbleSort(vector<TreeNode*> currentVect)
 
 /*
 Function prototype:
+vector<TreeNode*> Tree::shellSort(vector<TreeNode*> currentVect)
+
+Function description:
+This functions sorts the vector the the nodes are in alphabetical order
+
+Example:
+shellSort(XB360list);
+
+Pre-condition: currentVect is a valid vector
+Post-condition: vector has been updated
+*/
+
+std::vector<TreeNode*> Tree::shellSort(std::vector<TreeNode*> currentVect)
+{
+    bool boolFlag = true;       //flag to see if any switches happened
+    int intD = currentVect.size();
+    TreeNode* vectTemp;     //creates temp class to store variables temporarily
+    while( boolFlag || (intD > 1))      //if a switch has not occurred it must be sorted;
+    {
+        boolFlag = false;           //initialize flag to false to check for future switches
+        intD = (intD+1) / 2;
+        for (int i = 0; i < (currentVect.size() - intD); i++)
+        {
+            if (currentVect[i + intD]->title.compare(currentVect[i]->title) < 0) //compares the first item with another item halfway through the array
+            {
+                vectTemp = currentVect[i + intD];      //switch positions i+d and i
+                currentVect[i + intD] = currentVect[i];
+                currentVect[i] = vectTemp;
+                boolFlag = true;                  //tells switch has occurred
+            }
+        }
+    }
+    return currentVect;
+}
+
+/*
+Function prototype:
 void Tree::sortVectors(TreeNode * node)
 
 Function description:
@@ -764,10 +801,10 @@ void Tree::sortVectors(TreeNode * node)
             XBONElist.push_back(node);
             XB360list.push_back(node);
 
-            PS3list = bubbleSort(PS3list);
-            XB360list = bubbleSort(XB360list);
-            PS4list = bubbleSort(PS4list);
-            XBONElist = bubbleSort(XBONElist);
+            PS3list = shellSort(PS3list);
+            XB360list = shellSort(XB360list);
+            PS4list = shellSort(PS4list);
+            XBONElist = shellSort(XBONElist);
 
 
         }
@@ -776,8 +813,8 @@ void Tree::sortVectors(TreeNode * node)
             PS3list.push_back(node);
             XB360list.push_back(node);
 
-            PS3list = bubbleSort(PS3list);
-            XB360list = bubbleSort(XB360list);
+            PS3list = shellSort(PS3list);
+            XB360list = shellSort(XB360list);
 
         }
         else if(currentsystem == 12) //Next gen only
@@ -785,8 +822,8 @@ void Tree::sortVectors(TreeNode * node)
             PS4list.push_back(node);
             XBONElist.push_back(node);
 
-            PS4list = bubbleSort(PS4list);
-            XBONElist = bubbleSort(XBONElist);
+            PS4list = shellSort(PS4list);
+            XBONElist = shellSort(XBONElist);
         }
         else if(currentsystem == 6) //Xbox only
         {
@@ -794,46 +831,46 @@ void Tree::sortVectors(TreeNode * node)
             XB360list.push_back(node);
 
 
-            XB360list = bubbleSort(XB360list);
+            XB360list = shellSort(XB360list);
 
-            XBONElist = bubbleSort(XBONElist);
+            XBONElist = shellSort(XBONElist);
         }
         else if(currentsystem == 0) //playstations only
         {
             PS3list.push_back(node);
             PS4list.push_back(node);
 
-            PS3list = bubbleSort(PS3list);
+            PS3list = shellSort(PS3list);
 
-            PS4list = bubbleSort(PS4list);
+            PS4list = shellSort(PS4list);
 
         }
         else if(currentsystem == 4) //PS3 Only
         {
             PS3list.push_back(node);
 
-            PS3list = bubbleSort(PS3list);
+            PS3list = shellSort(PS3list);
 
         }
         else if(currentsystem == 13) //XB360 Only
         {
             XB360list.push_back(node);
 
-            XB360list = bubbleSort(XB360list);
+            XB360list = shellSort(XB360list);
 
         }
         else if(currentsystem == 5) //PS4 ONLY
         {
             PS4list.push_back(node);
 
-            PS4list = bubbleSort(PS4list);
+            PS4list = shellSort(PS4list);
 
         }
         else if(currentsystem == 2) //XBONE ONLY
         {
             XBONElist.push_back(node);
 
-            XBONElist = bubbleSort(XBONElist);
+            XBONElist = shellSort(XBONElist);
         }
 
 
@@ -846,25 +883,25 @@ void Tree::sortVectors(TreeNode * node)
     {
         RPGList.push_back(node);
 
-        RPGList = bubbleSort(RPGList);
+        RPGList = shellSort(RPGList);
     }
     else if(currrentgenre == "fighting")
     {
         Fightlist.push_back(node);
 
-        Fightlist = bubbleSort(Fightlist);
+        Fightlist = shellSort(Fightlist);
     }
     else if(currrentgenre == "shooter")
     {
         Shooterlist.push_back(node);
 
-        Shooterlist = bubbleSort(Shooterlist);
+        Shooterlist = shellSort(Shooterlist);
     }
     else if(currrentgenre == "action")
     {
         ActionList.push_back(node);
 
-        ActionList = bubbleSort(ActionList);
+        ActionList = shellSort(ActionList);
     }
 
 }
