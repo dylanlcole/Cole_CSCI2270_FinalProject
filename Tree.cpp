@@ -130,7 +130,7 @@ TreeNode* Tree::searchGames(TreeNode* x, string title, string system, string gen
             return NULL;
         }
     }
-
+    return NULL; //Had to have a return statement in order to avoid an error statement
 }
 /*
 Function prototype:
@@ -504,7 +504,7 @@ int Tree::countNodes(TreeNode* node)
 
 int Tree::gamesInStock()
 {
-	gamesInStock(root);
+	return gamesInStock(root);
 }
 
 int Tree::gamesInStock(TreeNode *node)
