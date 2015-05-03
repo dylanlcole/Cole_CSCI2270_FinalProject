@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include "Tree.h"
+#include <stdlib.h>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ int main(int argc, char * argv[])
         getline(line,system,',');
         getline(line,type,',');
         getline(line,tempWord,',');
-        stock = atoi (tempWord.c_str());
+        stock = atoi(tempWord.c_str());
         getline(line,tempWord);
         rating = atoi (tempWord.c_str());
         //cout<<title<<system<<type<<rating<<stock<<endl;
@@ -120,16 +121,16 @@ int main(int argc, char * argv[])
             getline(cin,title);
             cout<<"System should be separated by '/'"<<endl;
             getline(cin,systems);
-            cout<<"Select genre:\n1. RPG\n2. Fighting\n3. Shooting\n4. Action"<<endl;
+            cout<<"Select genre:\n1. Shooter\n2. RPG\n3. Action\n4. Fighting"<<endl;
             cin>>type;
             while (type != 1 && type != 2 && type != 3 && type != 4) {
                 cout<<"Enter a number between 1 and 4."<<endl;
                 cin>>type;
             }
-            if (type == 1) { typeString = "rpg"; }
-            if (type == 2) { typeString = "fighting"; }
-            if (type == 3) { typeString = "shooter"; }
-            if (type == 4) { typeString = "action"; }
+            if (type == 1) { typeString = "shooter"; }
+            if (type == 2) { typeString = "rpg"; }
+            if (type == 3) { typeString = "action"; }
+            if (type == 4) { typeString = "fighting"; }
 
             cout<<"Enter the rating:"<<endl;
             cin>>rating;
